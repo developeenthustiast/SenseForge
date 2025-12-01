@@ -1,0 +1,26 @@
+# Core
+torch>=2.0.0
+numpy
+pandas
+pydantic
+python-dotenv
+
+# Sponsor Tools (Placeholders/Actuals)
+# Note: These package names are illustrative based on the prompt. 
+# We will assume standard API access if SDKs aren't public yet.
+cambrian-sdk
+letta-client
+ambient-llm-sdk
+
+# API & UI
+fastapi
+uvicorn
+streamlit
+requests
+pydantic
+langchain
+starlette
+matplotlib
+aiohttp
+streamlit
+plotly

@@ -1,0 +1,2102 @@
+[
+  {
+    "initial_state": {
+      "liquidity_depth": 6257958.74697716,
+      "volatility_index": 0.5038918119188748,
+      "governance_risk_score": 0.4057494284831353
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 6326680.925949427,
+      "volatility_index": 0.4488051679385634,
+      "governance_risk_score": 0.3245995427865082
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13843944.121341862,
+      "volatility_index": 0.6715972387554464,
+      "governance_risk_score": 0.07965934176880868
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 14078394.397642221,
+      "volatility_index": 0.6561278377378943,
+      "governance_risk_score": 0.07965934176880868
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12379830.343035681,
+      "volatility_index": 0.37695246746905975,
+      "governance_risk_score": 0.4091563741441841
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 12379830.343035681,
+      "volatility_index": 0.37695246746905975,
+      "governance_risk_score": 0.4091563741441841
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7101894.838891225,
+      "volatility_index": 0.6344066345929508,
+      "governance_risk_score": 0.23261341083028342
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 7250274.731541515,
+      "volatility_index": 0.7339138021372491,
+      "governance_risk_score": 0.23261341083028342
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14014471.525748618,
+      "volatility_index": 0.6236502310381968,
+      "governance_risk_score": 0.4153260880116165
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 12767849.86057921,
+      "volatility_index": 0.7969926439728585,
+      "governance_risk_score": 0.4153260880116165
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7423102.311712895,
+      "volatility_index": 0.4022209703370041,
+      "governance_risk_score": 0.44860872200367274
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 7473355.564133084,
+      "volatility_index": 0.33586127933042076,
+      "governance_risk_score": 0.3588869776029382
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12156642.599565074,
+      "volatility_index": 0.2404238023544094,
+      "governance_risk_score": 0.49133522831006154
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 12156642.599565074,
+      "volatility_index": 0.2404238023544094,
+      "governance_risk_score": 0.49133522831006154
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11583516.047300704,
+      "volatility_index": 0.3831704640656578,
+      "governance_risk_score": 0.04825130354407814
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 11732781.409515576,
+      "volatility_index": 0.23103600176689915,
+      "governance_risk_score": 0.038601042835262514
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13487522.193150437,
+      "volatility_index": 0.44482996345360415,
+      "governance_risk_score": 0.10317108519532736
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 13487522.193150437,
+      "volatility_index": 0.44482996345360415,
+      "governance_risk_score": 0.10317108519532736
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5990881.68130648,
+      "volatility_index": 0.4729526162745239,
+      "governance_risk_score": 0.3339625462098761
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 6093248.879601111,
+      "volatility_index": 0.38143026099918936,
+      "governance_risk_score": 0.26717003696790087
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5422244.929588722,
+      "volatility_index": 0.18350753360711158,
+      "governance_risk_score": 0.47307896113173087
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 4998712.6311515635,
+      "volatility_index": 0.36400555392136197,
+      "governance_risk_score": 0.47307896113173087
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11702826.422872711,
+      "volatility_index": 0.15494307453402742,
+      "governance_risk_score": 0.4758855501144788
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 11702826.422872711,
+      "volatility_index": 0.15494307453402742,
+      "governance_risk_score": 0.4758855501144788
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5494797.164407669,
+      "volatility_index": 0.7420458350742916,
+      "governance_risk_score": 0.1188203564427357
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 5572513.028949285,
+      "volatility_index": 0.7464477535423976,
+      "governance_risk_score": 0.1188203564427357
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7726855.180817932,
+      "volatility_index": 0.5083640290653759,
+      "governance_risk_score": 0.4055460008856262
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 7726855.180817932,
+      "volatility_index": 0.5083640290653759,
+      "governance_risk_score": 0.4055460008856262
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5058815.798359845,
+      "volatility_index": 0.33494753097399144,
+      "governance_risk_score": 0.18858184934922823
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 5058815.798359845,
+      "volatility_index": 0.33494753097399144,
+      "governance_risk_score": 0.18858184934922823
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 8781961.387559948,
+      "volatility_index": 0.6052378944387735,
+      "governance_risk_score": 0.12745621180819605
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 8801336.681788119,
+      "volatility_index": 0.49165673604697296,
+      "governance_risk_score": 0.10196496944655684
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9547531.754471872,
+      "volatility_index": 0.3239996367969308,
+      "governance_risk_score": 0.26902976327759304
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 9712064.908771899,
+      "volatility_index": 0.2582085022744438,
+      "governance_risk_score": 0.21522381062207444
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10035625.137851559,
+      "volatility_index": 0.6662440140643396,
+      "governance_risk_score": 0.03841557029467041
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 10035625.137851559,
+      "volatility_index": 0.6662440140643396,
+      "governance_risk_score": 0.03841557029467041
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14698182.423391463,
+      "volatility_index": 0.7306936975685728,
+      "governance_risk_score": 0.008666799508672551
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 15281714.195387132,
+      "volatility_index": 0.6836467538337837,
+      "governance_risk_score": 0.008666799508672551
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14393412.10302885,
+      "volatility_index": 0.17517610714868165,
+      "governance_risk_score": 0.351414868050793
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 14481586.65197877,
+      "volatility_index": 0.1,
+      "governance_risk_score": 0.28113189444063436
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13360134.196372755,
+      "volatility_index": 0.7942364326443577,
+      "governance_risk_score": 0.4627056501292831
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 11708906.376087658,
+      "volatility_index": 1.0,
+      "governance_risk_score": 0.4627056501292831
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14782964.154529503,
+      "volatility_index": 0.5584639102764911,
+      "governance_risk_score": 0.41045995563855064
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 15030718.396951433,
+      "volatility_index": 0.37119342255727883,
+      "governance_risk_score": 0.3283679645108405
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13805301.22460263,
+      "volatility_index": 0.1892968183109343,
+      "governance_risk_score": 0.15884853178258024
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 13941820.894800343,
+      "volatility_index": 0.1,
+      "governance_risk_score": 0.1270788254260642
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5220598.74743656,
+      "volatility_index": 0.5735034869705752,
+      "governance_risk_score": 0.37288262551133816
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 4954169.5951202065,
+      "volatility_index": 0.7135520072953669,
+      "governance_risk_score": 0.37288262551133816
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7812161.047520656,
+      "volatility_index": 0.40113412306987695,
+      "governance_risk_score": 0.15083270735980692
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 7812161.047520656,
+      "volatility_index": 0.40113412306987695,
+      "governance_risk_score": 0.15083270735980692
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12921576.455201391,
+      "volatility_index": 0.6959016749084167,
+      "governance_risk_score": 0.3903483092953271
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 12921576.455201391,
+      "volatility_index": 0.6959016749084167,
+      "governance_risk_score": 0.3903483092953271
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 6390203.953450719,
+      "volatility_index": 0.6871006375894785,
+      "governance_risk_score": 0.017896777793812435
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 6443764.5170968445,
+      "volatility_index": 0.5822034589047593,
+      "governance_risk_score": 0.014317422235049948
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13427980.463844072,
+      "volatility_index": 0.13891803260287997,
+      "governance_risk_score": 0.45273465822810033
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 12009304.304834949,
+      "volatility_index": 0.26634024647904286,
+      "governance_risk_score": 0.45273465822810033
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12841595.69940311,
+      "volatility_index": 0.5932654722654126,
+      "governance_risk_score": 0.3284321531681093
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 12960890.853853684,
+      "volatility_index": 0.5861624033403167,
+      "governance_risk_score": 0.26274572253448747
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9827162.717607303,
+      "volatility_index": 0.5814431479242695,
+      "governance_risk_score": 0.4797644318423912
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 9952207.141886069,
+      "volatility_index": 0.4062728362424953,
+      "governance_risk_score": 0.38381154547391294
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5776493.293772453,
+      "volatility_index": 0.6479439687889124,
+      "governance_risk_score": 0.36490601162639125
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 5776493.293772453,
+      "volatility_index": 0.6479439687889124,
+      "governance_risk_score": 0.36490601162639125
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14452375.843313692,
+      "volatility_index": 0.5240863709586837,
+      "governance_risk_score": 0.29215047117872894
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 14572253.05441907,
+      "volatility_index": 0.4571107055112596,
+      "governance_risk_score": 0.23372037694298314
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13516786.497172812,
+      "volatility_index": 0.41621711507185677,
+      "governance_risk_score": 0.2503099923816526
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 13516786.497172812,
+      "volatility_index": 0.41621711507185677,
+      "governance_risk_score": 0.2503099923816526
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10852612.284670027,
+      "volatility_index": 0.7723379914684293,
+      "governance_risk_score": 0.4187596862298561
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 10852612.284670027,
+      "volatility_index": 0.7723379914684293,
+      "governance_risk_score": 0.4187596862298561
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10645040.300780624,
+      "volatility_index": 0.31502775124414595,
+      "governance_risk_score": 0.05923809517151701
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 10645040.300780624,
+      "volatility_index": 0.31502775124414595,
+      "governance_risk_score": 0.05923809517151701
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12747366.925088555,
+      "volatility_index": 0.4914752182011535,
+      "governance_risk_score": 0.4429943951955353
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 12802434.70503376,
+      "volatility_index": 0.3308634052876146,
+      "governance_risk_score": 0.3543955161564282
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9319897.723484013,
+      "volatility_index": 0.7146437821572884,
+      "governance_risk_score": 0.10847805200857469
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 9402887.092737326,
+      "volatility_index": 0.6025221523938458,
+      "governance_risk_score": 0.08678244160685974
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 8888306.151595116,
+      "volatility_index": 0.17174751747177322,
+      "governance_risk_score": 0.45191035162710247
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 8326426.103446248,
+      "volatility_index": 0.3868856133848575,
+      "governance_risk_score": 0.45191035162710247
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13182062.726510834,
+      "volatility_index": 0.46584128052015394,
+      "governance_risk_score": 0.4935310512490969
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 11303663.24428233,
+      "volatility_index": 0.6554638814955793,
+      "governance_risk_score": 0.4935310512490969
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10969830.366055228,
+      "volatility_index": 0.31769290944372164,
+      "governance_risk_score": 0.43959603234145034
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 11050720.361065209,
+      "volatility_index": 0.1427991325473692,
+      "governance_risk_score": 0.3516768258731603
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9218611.332213286,
+      "volatility_index": 0.3376135229105317,
+      "governance_risk_score": 0.047779015742789144
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 9218611.332213286,
+      "volatility_index": 0.3376135229105317,
+      "governance_risk_score": 0.047779015742789144
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9908499.647779055,
+      "volatility_index": 0.5972973829950862,
+      "governance_risk_score": 0.44916491054335617
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 9908499.647779055,
+      "volatility_index": 0.5972973829950862,
+      "governance_risk_score": 0.44916491054335617
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 8643717.50592523,
+      "volatility_index": 0.31008998928198106,
+      "governance_risk_score": 0.2899827366936398
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 8643717.50592523,
+      "volatility_index": 0.31008998928198106,
+      "governance_risk_score": 0.2899827366936398
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14671045.64259607,
+      "volatility_index": 0.4068502886101736,
+      "governance_risk_score": 0.2967528201351551
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 14930566.411413983,
+      "volatility_index": 0.40555641579976115,
+      "governance_risk_score": 0.23740225610812407
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13562845.011994861,
+      "volatility_index": 0.732946356786895,
+      "governance_risk_score": 0.06068762849928022
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 13562845.011994861,
+      "volatility_index": 0.732946356786895,
+      "governance_risk_score": 0.06068762849928022
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14822888.130374363,
+      "volatility_index": 0.5494249237221052,
+      "governance_risk_score": 0.054011684200953536
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 14822888.130374363,
+      "volatility_index": 0.5494249237221052,
+      "governance_risk_score": 0.054011684200953536
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 8613612.258428415,
+      "volatility_index": 0.5519750254129007,
+      "governance_risk_score": 0.29457634560199314
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 8613612.258428415,
+      "volatility_index": 0.5519750254129007,
+      "governance_risk_score": 0.29457634560199314
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5030725.660799731,
+      "volatility_index": 0.46438417419961286,
+      "governance_risk_score": 0.06484255525697724
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 5044128.851682772,
+      "volatility_index": 0.3720992978854251,
+      "governance_risk_score": 0.051874044205581796
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5892473.688559134,
+      "volatility_index": 0.4695071581663156,
+      "governance_risk_score": 0.09399115678886716
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 6135566.935625675,
+      "volatility_index": 0.5650726967310707,
+      "governance_risk_score": 0.09399115678886716
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 6560198.779874158,
+      "volatility_index": 0.7956583770406387,
+      "governance_risk_score": 0.3345079803984488
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 6560198.779874158,
+      "volatility_index": 0.7956583770406387,
+      "governance_risk_score": 0.3345079803984488
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7325785.711945475,
+      "volatility_index": 0.31258888062725076,
+      "governance_risk_score": 0.09167986715447146
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 7417856.656946319,
+      "volatility_index": 0.3043559895767621,
+      "governance_risk_score": 0.07334389372357716
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 8893159.702342372,
+      "volatility_index": 0.4229596839963301,
+      "governance_risk_score": 0.18216114785928944
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 8893159.702342372,
+      "volatility_index": 0.4229596839963301,
+      "governance_risk_score": 0.18216114785928944
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14961860.500769394,
+      "volatility_index": 0.31871429241140226,
+      "governance_risk_score": 0.3997859435092059
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 15080297.27445511,
+      "volatility_index": 0.26807685108027945,
+      "governance_risk_score": 0.3198287548073647
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14425193.631951323,
+      "volatility_index": 0.3048360306774513,
+      "governance_risk_score": 0.11086407250731695
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 14425193.631951323,
+      "volatility_index": 0.3048360306774513,
+      "governance_risk_score": 0.11086407250731695
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12309246.389028251,
+      "volatility_index": 0.3583373295148927,
+      "governance_risk_score": 0.3360216674053816
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 12309246.389028251,
+      "volatility_index": 0.3583373295148927,
+      "governance_risk_score": 0.3360216674053816
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5900298.727568514,
+      "volatility_index": 0.5248515536447544,
+      "governance_risk_score": 0.045110049374654515
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 5900298.727568514,
+      "volatility_index": 0.5248515536447544,
+      "governance_risk_score": 0.045110049374654515
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14013459.536106052,
+      "volatility_index": 0.7518338873558811,
+      "governance_risk_score": 0.26094464759780633
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 14291639.424347315,
+      "volatility_index": 0.646622683014181,
+      "governance_risk_score": 0.20875571807824506
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9143372.147084475,
+      "volatility_index": 0.2670106765859647,
+      "governance_risk_score": 0.22547924819593645
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 9245993.985017478,
+      "volatility_index": 0.25310344264373436,
+      "governance_risk_score": 0.18038339855674917
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14794653.704793148,
+      "volatility_index": 0.3507000385706597,
+      "governance_risk_score": 0.2692250806838552
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 14794653.704793148,
+      "volatility_index": 0.3507000385706597,
+      "governance_risk_score": 0.2692250806838552
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13275852.954071943,
+      "volatility_index": 0.1140346232659939,
+      "governance_risk_score": 0.4151098776299705
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 11395605.047675662,
+      "volatility_index": 0.2940279219805828,
+      "governance_risk_score": 0.4151098776299705
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5908370.431833511,
+      "volatility_index": 0.2523463842675425,
+      "governance_risk_score": 0.3556486473890015
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 5908370.431833511,
+      "volatility_index": 0.2523463842675425,
+      "governance_risk_score": 0.3556486473890015
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10842395.21633149,
+      "volatility_index": 0.5286230158862624,
+      "governance_risk_score": 0.09856021082849048
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 11038614.896470636,
+      "volatility_index": 0.5436914645731068,
+      "governance_risk_score": 0.09856021082849048
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13375936.450426064,
+      "volatility_index": 0.5033561669011358,
+      "governance_risk_score": 0.08267944849927528
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 13724220.758652983,
+      "volatility_index": 0.6009382077562944,
+      "governance_risk_score": 0.08267944849927528
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 6374905.120864067,
+      "volatility_index": 0.17858841443937323,
+      "governance_risk_score": 0.017401522207673048
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 6374905.120864067,
+      "volatility_index": 0.17858841443937323,
+      "governance_risk_score": 0.017401522207673048
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 6444891.668971672,
+      "volatility_index": 0.21595126855752667,
+      "governance_risk_score": 0.14591277870840424
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 6444891.668971672,
+      "volatility_index": 0.21595126855752667,
+      "governance_risk_score": 0.14591277870840424
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9377377.783158056,
+      "volatility_index": 0.43560304032629493,
+      "governance_risk_score": 0.17563797610943965
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 9377377.783158056,
+      "volatility_index": 0.43560304032629493,
+      "governance_risk_score": 0.17563797610943965
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9750154.057570674,
+      "volatility_index": 0.32767095569950894,
+      "governance_risk_score": 0.22616765758830348
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 9919128.58600921,
+      "volatility_index": 0.2512863986236535,
+      "governance_risk_score": 0.1809341260706428
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7306621.742037275,
+      "volatility_index": 0.7366863301874907,
+      "governance_risk_score": 0.1219522375283903
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 7326270.33449973,
+      "volatility_index": 0.6270074246229831,
+      "governance_risk_score": 0.09756179002271223
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11039485.044363992,
+      "volatility_index": 0.11565278790844775,
+      "governance_risk_score": 0.4525824551081853
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 9386764.786965393,
+      "volatility_index": 0.2622886162595768,
+      "governance_risk_score": 0.4525824551081853
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12585035.839372817,
+      "volatility_index": 0.12566133108097807,
+      "governance_risk_score": 0.4720270144439739
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 12585035.839372817,
+      "volatility_index": 0.12566133108097807,
+      "governance_risk_score": 0.4720270144439739
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11944713.474991696,
+      "volatility_index": 0.15611306219562288,
+      "governance_risk_score": 0.4125886992828838
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 11944713.474991696,
+      "volatility_index": 0.15611306219562288,
+      "governance_risk_score": 0.4125886992828838
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12714040.77766638,
+      "volatility_index": 0.6435379097260349,
+      "governance_risk_score": 0.06960441314406535
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 13223414.228319313,
+      "volatility_index": 0.6687269760560628,
+      "governance_risk_score": 0.06960441314406535
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14573250.010216406,
+      "volatility_index": 0.17692224944048798,
+      "governance_risk_score": 0.4485492165967461
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 14573250.010216406,
+      "volatility_index": 0.17692224944048798,
+      "governance_risk_score": 0.4485492165967461
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10716827.755398374,
+      "volatility_index": 0.3505718642913458,
+      "governance_risk_score": 0.03947320194315135
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 10918909.798158878,
+      "volatility_index": 0.34436285231956654,
+      "governance_risk_score": 0.03157856155452108
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11877413.537393745,
+      "volatility_index": 0.2547986612967508,
+      "governance_risk_score": 0.2511784757633225
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 12414591.111246811,
+      "volatility_index": 0.21839404455956812,
+      "governance_risk_score": 0.2511784757633225
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11352390.809355797,
+      "volatility_index": 0.48105080799561417,
+      "governance_risk_score": 0.07609200652624182
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 11438767.96075673,
+      "volatility_index": 0.4126465652842558,
+      "governance_risk_score": 0.06087360522099346
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7859086.786866081,
+      "volatility_index": 0.734987678924526,
+      "governance_risk_score": 0.26221807151462967
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 7859086.786866081,
+      "volatility_index": 0.734987678924526,
+      "governance_risk_score": 0.26221807151462967
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9262081.566512179,
+      "volatility_index": 0.553095101388665,
+      "governance_risk_score": 0.359077677740853
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 9262081.566512179,
+      "volatility_index": 0.553095101388665,
+      "governance_risk_score": 0.359077677740853
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7256103.720072319,
+      "volatility_index": 0.5495597952036736,
+      "governance_risk_score": 0.032881101208430685
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 7256103.720072319,
+      "volatility_index": 0.5495597952036736,
+      "governance_risk_score": 0.032881101208430685
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11769277.066331089,
+      "volatility_index": 0.6030367133667116,
+      "governance_risk_score": 0.290442808369602
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 11769277.066331089,
+      "volatility_index": 0.6030367133667116,
+      "governance_risk_score": 0.290442808369602
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5573656.198897341,
+      "volatility_index": 0.6118607470769045,
+      "governance_risk_score": 0.384290142540524
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 5573656.198897341,
+      "volatility_index": 0.6118607470769045,
+      "governance_risk_score": 0.384290142540524
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11312566.473638274,
+      "volatility_index": 0.3725510379263447,
+      "governance_risk_score": 0.46103036363278477
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 11312566.473638274,
+      "volatility_index": 0.3725510379263447,
+      "governance_risk_score": 0.46103036363278477
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14837968.122376485,
+      "volatility_index": 0.5723253525314723,
+      "governance_risk_score": 0.43583946911429805
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 14919335.438614406,
+      "volatility_index": 0.5489350297345201,
+      "governance_risk_score": 0.34867157529143844
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10082136.64582711,
+      "volatility_index": 0.33439115843623046,
+      "governance_risk_score": 0.35433646309664285
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 10082136.64582711,
+      "volatility_index": 0.33439115843623046,
+      "governance_risk_score": 0.35433646309664285
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14977403.939933494,
+      "volatility_index": 0.23310436137627696,
+      "governance_risk_score": 0.022494374950451868
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 15206669.243928162,
+      "volatility_index": 0.18405348017842127,
+      "governance_risk_score": 0.022494374950451868
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14825132.21631036,
+      "volatility_index": 0.10381315481315237,
+      "governance_risk_score": 0.12465281065651623
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 15227813.886042915,
+      "volatility_index": 0.16131502052026636,
+      "governance_risk_score": 0.12465281065651623
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12672011.35010057,
+      "volatility_index": 0.3001385448634456,
+      "governance_risk_score": 0.16300253557806338
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 12672011.35010057,
+      "volatility_index": 0.3001385448634456,
+      "governance_risk_score": 0.16300253557806338
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14483087.4943974,
+      "volatility_index": 0.5669275307113887,
+      "governance_risk_score": 0.4268398377783519
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 14571136.113017874,
+      "volatility_index": 0.3983001509357048,
+      "governance_risk_score": 0.3414718702226815
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12138524.337056698,
+      "volatility_index": 0.4341258522967322,
+      "governance_risk_score": 0.14582187424667598
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 12138524.337056698,
+      "volatility_index": 0.4341258522967322,
+      "governance_risk_score": 0.14582187424667598
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9272211.511913544,
+      "volatility_index": 0.4900056079009313,
+      "governance_risk_score": 0.3004242789426806
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 9272211.511913544,
+      "volatility_index": 0.4900056079009313,
+      "governance_risk_score": 0.3004242789426806
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5308194.791856237,
+      "volatility_index": 0.435112719712196,
+      "governance_risk_score": 0.11825380512753292
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 5338078.002928937,
+      "volatility_index": 0.3592362431282027,
+      "governance_risk_score": 0.09460304410202633
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7950902.662568511,
+      "volatility_index": 0.1044475892182331,
+      "governance_risk_score": 0.45171106546602197
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 8031180.949668271,
+      "volatility_index": 0.1,
+      "governance_risk_score": 0.3613688523728176
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9454560.988022516,
+      "volatility_index": 0.11648897613758055,
+      "governance_risk_score": 0.04955725694903529
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 9496156.005824396,
+      "volatility_index": 0.1,
+      "governance_risk_score": 0.03964580555922823
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12762319.854249354,
+      "volatility_index": 0.264395183831194,
+      "governance_risk_score": 0.4887704868653498
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 11490749.711425148,
+      "volatility_index": 0.5110869749845077,
+      "governance_risk_score": 0.4887704868653498
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5012077.989765585,
+      "volatility_index": 0.6501453284559267,
+      "governance_risk_score": 0.3609100750717421
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 5012077.989765585,
+      "volatility_index": 0.6501453284559267,
+      "governance_risk_score": 0.3609100750717421
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5286429.599172039,
+      "volatility_index": 0.4787020450022429,
+      "governance_risk_score": 0.3694140480884608
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 4890986.809195402,
+      "volatility_index": 0.6944393771558199,
+      "governance_risk_score": 0.3694140480884608
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11631613.485086616,
+      "volatility_index": 0.1933182325568026,
+      "governance_risk_score": 0.19971463337765427
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 11646718.708627481,
+      "volatility_index": 0.19302457621704083,
+      "governance_risk_score": 0.15977170670212343
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12802704.817362789,
+      "volatility_index": 0.3753860522792888,
+      "governance_risk_score": 0.25450252421019315
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 13037726.189892935,
+      "volatility_index": 0.2138260611213878,
+      "governance_risk_score": 0.20360201936815453
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12488041.068055086,
+      "volatility_index": 0.29603880501568675,
+      "governance_risk_score": 0.18784542569475715
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 12605225.869662642,
+      "volatility_index": 0.12632398690404126,
+      "governance_risk_score": 0.15027634055580572
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11513546.75076003,
+      "volatility_index": 0.4168906734358542,
+      "governance_risk_score": 0.37207042773289506
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 11513546.75076003,
+      "volatility_index": 0.4168906734358542,
+      "governance_risk_score": 0.37207042773289506
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 8367800.87155645,
+      "volatility_index": 0.1873459277546532,
+      "governance_risk_score": 0.23165357580657814
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 8442434.664716039,
+      "volatility_index": 0.1,
+      "governance_risk_score": 0.18532286064526252
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13330149.739996618,
+      "volatility_index": 0.5225037226947259,
+      "governance_risk_score": 0.4313882240448618
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 13330149.739996618,
+      "volatility_index": 0.5225037226947259,
+      "governance_risk_score": 0.4313882240448618
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11956984.660802074,
+      "volatility_index": 0.6250865441358795,
+      "governance_risk_score": 0.3637863226289868
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 10765907.892652432,
+      "volatility_index": 0.8490527044695421,
+      "governance_risk_score": 0.3637863226289868
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9980948.731374703,
+      "volatility_index": 0.5005379606058755,
+      "governance_risk_score": 0.23115134042231877
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 9980948.731374703,
+      "volatility_index": 0.5005379606058755,
+      "governance_risk_score": 0.23115134042231877
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10701947.866418332,
+      "volatility_index": 0.7902018726136364,
+      "governance_risk_score": 0.1686490262559438
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 10813832.1952057,
+      "volatility_index": 0.7181820325315309,
+      "governance_risk_score": 0.13491922100475504
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 8768620.928949606,
+      "volatility_index": 0.3536657940165612,
+      "governance_risk_score": 0.009617957867468274
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 8768620.928949606,
+      "volatility_index": 0.3536657940165612,
+      "governance_risk_score": 0.009617957867468274
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7805247.535955396,
+      "volatility_index": 0.5474277756693086,
+      "governance_risk_score": 0.24500611922885507
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 7916048.24897387,
+      "volatility_index": 0.3557257921949669,
+      "governance_risk_score": 0.19600489538308405
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 8652682.054485694,
+      "volatility_index": 0.41629942228571715,
+      "governance_risk_score": 0.023024213756700496
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 8801300.22415616,
+      "volatility_index": 0.22969640711831013,
+      "governance_risk_score": 0.018419371005360397
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12371665.872581389,
+      "volatility_index": 0.25360369880938594,
+      "governance_risk_score": 0.47261487379414413
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 12400675.585429734,
+      "volatility_index": 0.1,
+      "governance_risk_score": 0.3780918990353153
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13623620.563979998,
+      "volatility_index": 0.5266683965464479,
+      "governance_risk_score": 0.27222203260935296
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 14203183.784915594,
+      "volatility_index": 0.441739093559137,
+      "governance_risk_score": 0.27222203260935296
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7960688.43211547,
+      "volatility_index": 0.2955757681659725,
+      "governance_risk_score": 0.056740630794706426
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 8015258.1527463375,
+      "volatility_index": 0.17290657253563796,
+      "governance_risk_score": 0.04539250463576514
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11368798.980195018,
+      "volatility_index": 0.6163922416811599,
+      "governance_risk_score": 0.3537487704027216
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 10203313.081309022,
+      "volatility_index": 0.7320950857302725,
+      "governance_risk_score": 0.3537487704027216
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9851418.176419735,
+      "volatility_index": 0.3772616280593535,
+      "governance_risk_score": 0.3744875272204944
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 10039436.571682714,
+      "volatility_index": 0.3717017183826691,
+      "governance_risk_score": 0.2995900217763955
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 6311713.873271793,
+      "volatility_index": 0.7779527033987116,
+      "governance_risk_score": 0.28312056192572654
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 6385928.175802267,
+      "volatility_index": 0.6104190470800954,
+      "governance_risk_score": 0.22649644954058124
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12620444.703508433,
+      "volatility_index": 0.2806674128787673,
+      "governance_risk_score": 0.4765649354405905
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 12620444.703508433,
+      "volatility_index": 0.2806674128787673,
+      "governance_risk_score": 0.4765649354405905
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13653512.835969485,
+      "volatility_index": 0.49218309452626463,
+      "governance_risk_score": 0.4264018135509162
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 13653512.835969485,
+      "volatility_index": 0.49218309452626463,
+      "governance_risk_score": 0.4264018135509162
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 6309999.432174498,
+      "volatility_index": 0.16796219866997203,
+      "governance_risk_score": 0.17992813523369156
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 6420570.62638653,
+      "volatility_index": 0.1,
+      "governance_risk_score": 0.14394250818695326
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13392812.962202497,
+      "volatility_index": 0.5673184449195608,
+      "governance_risk_score": 0.42858359596613466
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 13392812.962202497,
+      "volatility_index": 0.5673184449195608,
+      "governance_risk_score": 0.42858359596613466
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14612891.155117366,
+      "volatility_index": 0.6487106668225419,
+      "governance_risk_score": 0.3733440664592174
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 14612891.155117366,
+      "volatility_index": 0.6487106668225419,
+      "governance_risk_score": 0.3733440664592174
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11162486.027449053,
+      "volatility_index": 0.4402606511749233,
+      "governance_risk_score": 0.48452885932773004
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 9613074.028256489,
+      "volatility_index": 0.6171493516520555,
+      "governance_risk_score": 0.48452885932773004
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13792813.744403148,
+      "volatility_index": 0.5213328119125809,
+      "governance_risk_score": 0.19680458076720736
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 14037480.089379707,
+      "volatility_index": 0.45219970108108043,
+      "governance_risk_score": 0.15744366461376588
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14527115.903702136,
+      "volatility_index": 0.27740393860703755,
+      "governance_risk_score": 0.0251309666307315
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 14527115.903702136,
+      "volatility_index": 0.27740393860703755,
+      "governance_risk_score": 0.0251309666307315
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10827732.188644417,
+      "volatility_index": 0.6365070919005733,
+      "governance_risk_score": 0.14329802511807904
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 10827732.188644417,
+      "volatility_index": 0.6365070919005733,
+      "governance_risk_score": 0.14329802511807904
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11945595.722651854,
+      "volatility_index": 0.7478382603365882,
+      "governance_risk_score": 0.3817354909553267
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 11945595.722651854,
+      "volatility_index": 0.7478382603365882,
+      "governance_risk_score": 0.3817354909553267
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10204441.222830113,
+      "volatility_index": 0.7730155356794676,
+      "governance_risk_score": 0.39515189649689136
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 9262474.243954655,
+      "volatility_index": 0.987303607419777,
+      "governance_risk_score": 0.39515189649689136
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9029315.921093473,
+      "volatility_index": 0.35545930724333774,
+      "governance_risk_score": 0.04289965515094635
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 9411914.129077466,
+      "volatility_index": 0.32054374706847033,
+      "governance_risk_score": 0.04289965515094635
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10675299.288524188,
+      "volatility_index": 0.23838066949087558,
+      "governance_risk_score": 0.40170274983259685
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 10115337.02404112,
+      "volatility_index": 0.4420033811241988,
+      "governance_risk_score": 0.40170274983259685
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 6978678.163435457,
+      "volatility_index": 0.3956139183975612,
+      "governance_risk_score": 0.045197220987901354
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 7167388.175501895,
+      "volatility_index": 0.3704930491643732,
+      "governance_risk_score": 0.045197220987901354
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11270505.299295269,
+      "volatility_index": 0.16796448805048447,
+      "governance_risk_score": 0.2730043655924224
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 11270505.299295269,
+      "volatility_index": 0.16796448805048447,
+      "governance_risk_score": 0.2730043655924224
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14823290.438256389,
+      "volatility_index": 0.6533515078538763,
+      "governance_risk_score": 0.3454193464279901
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 14071134.805031488,
+      "volatility_index": 0.9424043651022321,
+      "governance_risk_score": 0.3454193464279901
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7913043.149406122,
+      "volatility_index": 0.4169872200693766,
+      "governance_risk_score": 0.1918627206789707
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 8117815.700287663,
+      "volatility_index": 0.35686284436295185,
+      "governance_risk_score": 0.1918627206789707
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11647740.045495365,
+      "volatility_index": 0.13844354056220143,
+      "governance_risk_score": 0.1404208108843666
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 11647740.045495365,
+      "volatility_index": 0.13844354056220143,
+      "governance_risk_score": 0.1404208108843666
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11552873.733010609,
+      "volatility_index": 0.1313360266435741,
+      "governance_risk_score": 0.3190307650486144
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 11764352.554733645,
+      "volatility_index": 0.1,
+      "governance_risk_score": 0.2552246120388915
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11649192.289743494,
+      "volatility_index": 0.6375929407185095,
+      "governance_risk_score": 0.1558523918818323
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 12101604.557503076,
+      "volatility_index": 0.7279497030303079,
+      "governance_risk_score": 0.1558523918818323
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 11436789.390363649,
+      "volatility_index": 0.6024550342355001,
+      "governance_risk_score": 0.3408954500614061
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 9797244.719308123,
+      "volatility_index": 0.7358417910711391,
+      "governance_risk_score": 0.3408954500614061
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 14697451.470442642,
+      "volatility_index": 0.3575686690404525,
+      "governance_risk_score": 0.021610011540312057
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 14822531.591816342,
+      "volatility_index": 0.26145756704080875,
+      "governance_risk_score": 0.017288009232249647
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7931619.568222769,
+      "volatility_index": 0.7067686596528853,
+      "governance_risk_score": 0.13222702761342048
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 7994269.560346012,
+      "volatility_index": 0.6015627632639549,
+      "governance_risk_score": 0.10578162209073638
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13895690.133695312,
+      "volatility_index": 0.6179245917660194,
+      "governance_risk_score": 0.47928399802101196
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 13908474.456548667,
+      "volatility_index": 0.5358255835789727,
+      "governance_risk_score": 0.38342719841680956
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12319369.660734516,
+      "volatility_index": 0.7889903074095757,
+      "governance_risk_score": 0.10976026891160945
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 12319369.660734516,
+      "volatility_index": 0.7889903074095757,
+      "governance_risk_score": 0.10976026891160945
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10903966.805982735,
+      "volatility_index": 0.16164860785377244,
+      "governance_risk_score": 0.29916481083986507
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 11320268.800546352,
+      "volatility_index": 0.16509362418475348,
+      "governance_risk_score": 0.29916481083986507
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 5347091.197314183,
+      "volatility_index": 0.3413233142194896,
+      "governance_risk_score": 0.4115587908590019
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 5380277.844349591,
+      "volatility_index": 0.20025136796219256,
+      "governance_risk_score": 0.3292470326872015
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12978074.611586332,
+      "volatility_index": 0.4263662984172959,
+      "governance_risk_score": 0.2402338217425562
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 13299951.116239928,
+      "volatility_index": 0.4824582486248208,
+      "governance_risk_score": 0.2402338217425562
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9928719.68565287,
+      "volatility_index": 0.16063502775926947,
+      "governance_risk_score": 0.0830825801620731
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 10241128.039974663,
+      "volatility_index": 0.1,
+      "governance_risk_score": 0.0830825801620731
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 6065556.117566478,
+      "volatility_index": 0.5716690497839999,
+      "governance_risk_score": 0.3739647425410127
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 6065556.117566478,
+      "volatility_index": 0.5716690497839999,
+      "governance_risk_score": 0.3739647425410127
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 13843535.25599091,
+      "volatility_index": 0.4493833579717399,
+      "governance_risk_score": 0.11413114055184437
+    },
+    "action": 1.0,
+    "action_type": "PASS",
+    "next_state": {
+      "liquidity_depth": 14212444.674593402,
+      "volatility_index": 0.5238852561014734,
+      "governance_risk_score": 0.11413114055184437
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 7011807.316516139,
+      "volatility_index": 0.5488892456643977,
+      "governance_risk_score": 0.18193319596038682
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 7079202.178564543,
+      "volatility_index": 0.5280485596758723,
+      "governance_risk_score": 0.14554655676830947
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 12269471.098870913,
+      "volatility_index": 0.6848918411674574,
+      "governance_risk_score": 0.06292852993682085
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 12269471.098870913,
+      "volatility_index": 0.6848918411674574,
+      "governance_risk_score": 0.06292852993682085
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 6026338.057929228,
+      "volatility_index": 0.12630385564091534,
+      "governance_risk_score": 0.37474124374178214
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 6026338.057929228,
+      "volatility_index": 0.12630385564091534,
+      "governance_risk_score": 0.37474124374178214
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 9726320.686417308,
+      "volatility_index": 0.6387624455845539,
+      "governance_risk_score": 0.4508475925074758
+    },
+    "action": -1.0,
+    "action_type": "REJECT",
+    "next_state": {
+      "liquidity_depth": 9895932.057377363,
+      "volatility_index": 0.5439503037271782,
+      "governance_risk_score": 0.3606780740059806
+    }
+  },
+  {
+    "initial_state": {
+      "liquidity_depth": 10404445.534740418,
+      "volatility_index": 0.6869911266931991,
+      "governance_risk_score": 0.044388937964311814
+    },
+    "action": 0.0,
+    "action_type": "NO_CHANGE",
+    "next_state": {
+      "liquidity_depth": 10404445.534740418,
+      "volatility_index": 0.6869911266931991,
+      "governance_risk_score": 0.044388937964311814
+    }
+  }
+]
