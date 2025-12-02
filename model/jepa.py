@@ -1,3 +1,4 @@
+"""
 SenseForge JEPA Model
 Updated version with database integration and versioning.
 """
@@ -11,8 +12,8 @@ from datetime import datetime
 from typing import Optional, Dict, List
 
 from database.repository import CheckpointRepository, TrainingRepository
-from observability.metrics import metrics_registry
-from observability.logging import logger
+from metrics import metrics
+from logging_setup import logger
 
 class LiquidityJEPA(nn.Module):
     """Enhanced JEPA model with production features"""
@@ -81,8 +82,7 @@ class LiquidityJEPA(nn.Module):
         self.training_history.append(avg_loss)
         
         # Update metrics
-        metrics_registry.update_model_loss(avg_loss)
-        metrics_registry.increment_training_epoch()
+        metrics.track_training(avg_loss)
         
         return avg_loss
     
@@ -198,7 +198,7 @@ class LiquidityJEPA(nn.Module):
         
         # Update metrics
         if self.training_history:
-            metrics_registry.update_model_loss(self.training_history[-1])
+            metrics.track_training(self.training_history[-1])
         
         return True
     
@@ -210,4 +210,4 @@ class LiquidityJEPA(nn.Module):
     def load_checkpoint(self, filepath='checkpoints/jepa_model.pth'):
         """Legacy load method"""
         return self.load_checkpoint_versioned()
-````
+

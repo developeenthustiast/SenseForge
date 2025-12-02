@@ -38,6 +38,7 @@ from planning.strategist import StrategistAgent
 from planning.auditor import AuditorAgent
 from logging_setup import logger
 from reasoning_logger import reasoning_logger
+from metrics import metrics as metrics_tracker
 
 # ===== CONFIGURATION =====
 MODE = os.getenv('SENSEFORGE_MODE', 'mock')
@@ -302,6 +303,32 @@ async def metrics_endpoint(request):
     except Exception as e:
         logger.error(f"Metrics generation failed: {e}")
         return JSONResponse({"error": "Metrics unavailable"}, status_code=500)
+
+async def dashboard_metrics(request):
+    """JSON metrics for dashboard consumption"""
+    try:
+        accuracy_stats = metrics_tracker.get_accuracy_stats()
+        training_stats = metrics_tracker.get_training_stats()
+        recent_predictions = metrics_tracker.get_recent_predictions(limit=10)
+
+        response = {
+            "accuracy": accuracy_stats,
+            "training": training_stats,
+            "recent_predictions": recent_predictions,
+            "timestamp": datetime.utcnow().isoformat() + 'Z'
+        }
+
+        return JSONResponse(response)
+
+    except Exception as e:
+        logger.error(f"Dashboard metrics failed: {e}", exc_info=True)
+        return JSONResponse(
+            {
+                "error": "metrics_unavailable",
+                "message": "Unable to load dashboard metrics"
+            },
+            status_code=500
+        )
 
 async def handle_query(request):
     """

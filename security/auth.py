@@ -1,4 +1,4 @@
-```python
+
 """
 SenseForge Authentication
 API key-based authentication for enterprise deployments.

@@ -8,9 +8,7 @@ python-dotenv
 # Sponsor Tools (Placeholders/Actuals)
 # Note: These package names are illustrative based on the prompt. 
 # We will assume standard API access if SDKs aren't public yet.
-cambrian-sdk
-letta-client
-ambient-llm-sdk
+# SDKs removed as code uses direct HTTP calls
 
 # API & UI
 fastapi
@@ -24,3 +22,4 @@ matplotlib
 aiohttp
 streamlit
 plotly
+redis

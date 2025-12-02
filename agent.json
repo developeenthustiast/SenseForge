@@ -2,7 +2,7 @@
     "name": "SenseForge Risk Oracle",
     "description": "An Institutional Liquidity Risk Oracle that uses a JEPA-inspired Sense-Model to predict liquidity crises caused by governance events.",
     "version": "0.1.0",
-    "url": "http://localhost:8000",
+    "url": "https://metal-flies-dress.loca.lt",
     "capabilities": [
         "protocol.verisense.risk-analysis",
         "protocol.verisense.liquidity-prediction"

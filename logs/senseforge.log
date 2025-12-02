@@ -1,0 +1,11 @@
+2025-12-02 03:19:43,181 - senseforge - INFO - AmbientLLMClient initialized (model: ambient-1)
+2025-12-02 03:19:43,194 - senseforge - INFO - ProofOfReasoningLogger initialized
+2025-12-02 03:19:43,197 - senseforge - INFO - ======================================================================
+2025-12-02 03:19:43,262 - senseforge - INFO - ======================================================================
+2025-12-02 03:19:43,263 - senseforge - INFO - Mode: mock
+2025-12-02 03:19:43,271 - senseforge - INFO - ======================================================================
+2025-12-02 03:19:43,502 - senseforge - INFO - Initializing SenseForge components (mode: mock)...
+2025-12-02 03:19:46,843 - senseforge - INFO - LiquidityJEPA initialized
+2025-12-02 03:19:46,856 - senseforge - INFO - StrategistAgent initialized (mode: mock)
+2025-12-02 03:19:46,869 - senseforge - INFO - ============================================================
+2025-12-02 03:19:46,877 - senseforge - INFO - ============================================================

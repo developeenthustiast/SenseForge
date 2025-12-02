@@ -1,4 +1,4 @@
-```python
+
 """
 SenseForge Rate Limiting
 Enterprise-grade rate limiting with multiple strategies.
