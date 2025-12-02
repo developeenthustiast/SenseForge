@@ -2,75 +2,50 @@
 SenseForge JEPA Model
 Updated version with database integration and versioning.
 """
-try:
-    import torch
-    import torch.nn as nn
-    import torch.optim as optim
-    TORCH_AVAILABLE = True
-except ImportError:
-    # Running on Vercel without torch - use mock mode
-    TORCH_AVAILABLE = False
-    torch = None
-    nn = object if not TORCH_AVAILABLE else nn
-    
+import torch
+import torch.nn as nn
+import torch.optim as optim
 from collections import deque
 import random
 import os
 from datetime import datetime
 from typing import Optional, Dict, List
 
-try:
-    from database.repository import CheckpointRepository, TrainingRepository
-    DATABASE_AVAILABLE = True
-except ImportError:
-    # Database not available (Vercel serverless)
-    DATABASE_AVAILABLE = False
-    CheckpointRepository = None
-    TrainingRepository = None
-    
+from database.repository import CheckpointRepository, TrainingRepository
 from metrics import metrics
 from logging_setup import logger
 
-class LiquidityJEPA(nn.Module if TORCH_AVAILABLE else object):
+class LiquidityJEPA(nn.Module):
     """Enhanced JEPA model with production features"""
     
     def __init__(self, state_dim: int = 3, action_dim: int = 1, latent_dim: int = 16):
-        if TORCH_AVAILABLE:
-            super().__init__()
-            
-            # Architecture (unchanged)
-            self.encoder = nn.Sequential(
-                nn.Linear(state_dim, 32),
-                nn.ReLU(),
-                nn.Linear(32, latent_dim)
-            )
-            
-            self.predictor = nn.Sequential(
-                nn.Linear(latent_dim + action_dim, 32),
-                nn.ReLU(),
-                nn.Linear(32, latent_dim)
-            )
-            
-            self.projector = nn.Sequential(
-                nn.Linear(latent_dim, 32),
-                nn.ReLU(),
-                nn.Linear(32, state_dim)
-            )
-            
-            self.optimizer = optim.Adam(self.parameters(), lr=0.001)
-            self.loss_fn = nn.MSELoss()
-        else:
-            # Mock mode - no torch available
-            self.encoder = None
-            self.predictor = None
-            self.projector = None
-            self.optimizer = None
-            self.loss_fn = None
-            
+        super().__init__()
+        
+        # Architecture (unchanged)
+        self.encoder = nn.Sequential(
+            nn.Linear(state_dim, 32),
+            nn.ReLU(),
+            nn.Linear(32, latent_dim)
+        )
+        
+        self.predictor = nn.Sequential(
+            nn.Linear(latent_dim + action_dim, 32),
+            nn.ReLU(),
+            nn.Linear(32, latent_dim)
+        )
+        
+        self.projector = nn.Sequential(
+            nn.Linear(latent_dim, 32),
+            nn.ReLU(),
+            nn.Linear(32, state_dim)
+        )
+        
+        self.optimizer = optim.Adam(self.parameters(), lr=0.001)
+        self.loss_fn = nn.MSELoss()
         self.replay_buffer = deque(maxlen=10000)
         self.training_history: List[float] = []
         
-        logger.info(f"LiquidityJEPA initialized (torch={'available' if TORCH_AVAILABLE else 'unavailable'})")
+        logger.info("LiquidityJEPA initialized")
     
     def forward(self, state_tensor):
         """Encode state to latent representation"""
@@ -126,11 +101,6 @@ class LiquidityJEPA(nn.Module if TORCH_AVAILABLE else object):
     def add_experience(self, state_dict: Dict, action_value: float, next_state_dict: Dict):
         """Add experience to replay buffer and database"""
         
-        if not TORCH_AVAILABLE:
-            # Can't add experience without torch
-            logger.warning("add_experience called but torch not available")
-            return
-            
         state_tensor = torch.tensor([[
             state_dict['liquidity_depth'],
             state_dict['volatility_index'],
@@ -147,23 +117,18 @@ class LiquidityJEPA(nn.Module if TORCH_AVAILABLE else object):
         
         self.replay_buffer.append((state_tensor, action_tensor, next_state_tensor))
         
-        # Also save to database for persistent training data (if available)
-        if DATABASE_AVAILABLE:
-            try:
-                TrainingRepository.add_episode(
-                    initial_state=state_dict,
-                    action=action_value,
-                    next_state=next_state_dict
-                )
-            except Exception as e:
-                logger.error(f"Failed to save training episode to database: {e}")
+        # Also save to database for persistent training data
+        try:
+            TrainingRepository.add_episode(
+                initial_state=state_dict,
+                action=action_value,
+                next_state=next_state_dict
+            )
+        except Exception as e:
+            logger.error(f"Failed to save training episode to database: {e}")
     
     def save_checkpoint_versioned(self, version: Optional[str] = None, notes: Optional[str] = None):
         """Save checkpoint with version tracking"""
-        
-        if not TORCH_AVAILABLE:
-            logger.warning("Cannot save checkpoint: torch not available")
-            return None
         
         if version is None:
             version = datetime.now().strftime("v%Y%m%d_%H%M%S")
@@ -182,20 +147,19 @@ class LiquidityJEPA(nn.Module if TORCH_AVAILABLE else object):
         
         torch.save(checkpoint, filepath)
         
-        # Save metadata to database (if available)
-        if DATABASE_AVAILABLE:
-            try:
-                CheckpointRepository.save_checkpoint(
-                    version=version,
-                    epochs_trained=len(self.training_history),
-                    final_loss=self.training_history[-1] if self.training_history else 0.0,
-                    training_samples=len(self.replay_buffer),
-                    file_path=filepath,
-                    notes=notes,
-                    metadata={'replay_buffer_size': len(self.replay_buffer)}
-                )
-            except Exception as e:
-                logger.error(f"Failed to save checkpoint metadata: {e}")
+        # Save metadata to database
+        try:
+            CheckpointRepository.save_checkpoint(
+                version=version,
+                epochs_trained=len(self.training_history),
+                final_loss=self.training_history[-1] if self.training_history else 0.0,
+                training_samples=len(self.replay_buffer),
+                file_path=filepath,
+                notes=notes,
+                metadata={'replay_buffer_size': len(self.replay_buffer)}
+            )
+        except Exception as e:
+            logger.error(f"Failed to save checkpoint metadata: {e}")
         
         logger.info(f"Checkpoint saved: {version}")
         
@@ -204,12 +168,8 @@ class LiquidityJEPA(nn.Module if TORCH_AVAILABLE else object):
     def load_checkpoint_versioned(self, version: Optional[str] = None) -> bool:
         """Load checkpoint by version"""
         
-        if not TORCH_AVAILABLE:
-            logger.warning("Cannot load checkpoint: torch not available")
-            return False
-        
-        if version is None and DATABASE_AVAILABLE:
-            # Load latest from database
+        if version is None:
+            # Load latest
             checkpoint_record = CheckpointRepository.get_latest()
             if not checkpoint_record:
                 logger.warning("No checkpoints found")
@@ -217,16 +177,13 @@ class LiquidityJEPA(nn.Module if TORCH_AVAILABLE else object):
             
             filepath = checkpoint_record.file_path
             logger.info(f"Loading latest checkpoint: {checkpoint_record.version}")
-        elif version and DATABASE_AVAILABLE:
+        else:
             checkpoint_record = CheckpointRepository.get_by_version(version)
             if not checkpoint_record:
                 logger.warning(f"Checkpoint version {version} not found")
                 return False
             
             filepath = checkpoint_record.file_path
-        else:
-            # No database, try default path
-            filepath = 'checkpoints/jepa_model.pth'
         
         if not os.path.exists(filepath):
             logger.error(f"Checkpoint file not found: {filepath}")

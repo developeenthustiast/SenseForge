@@ -151,8 +151,8 @@ middleware = [
     Middleware(RateLimitMiddleware, rate_limiter=RateLimiter(
         rate=int(os.getenv('RATE_LIMIT', 100)),
         per=60,
-        storage='redis' if os.getenv('REDIS_URL') else 'memory',
-        redis_url=os.getenv('REDIS_URL')
+        storage='redis',
+        redis_url=os.getenv('REDIS_URL', 'redis://localhost:6379')
     )),
 ]
 

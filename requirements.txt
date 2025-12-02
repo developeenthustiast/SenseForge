@@ -1,11 +1,16 @@
-# Vercel-optimized dependencies (no torch/heavy ML libs)
-# Core web framework
+# Core ML & Data Science
+torch>=2.0.0
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Web Framework
 starlette==0.35.1
 uvicorn==0.27.0
 pydantic==2.5.3
 python-dotenv==1.0.0
 
-# HTTP & async
+# HTTP & Async
+requests>=2.31.0
 aiohttp==3.9.1
 
 # Redis (async)
@@ -13,3 +18,10 @@ redis==5.0.1
 
 # Security
 cryptography==41.0.7
+
+# Visualization
+matplotlib>=3.7.0
+plotly>=5.18.0
+
+# Dashboard
+streamlit>=1.29.0
