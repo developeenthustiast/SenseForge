@@ -6,7 +6,14 @@ import json
 from typing import List, Dict, Optional
 from datetime import datetime
 from pathlib import Path
-import numpy as np
+
+try:
+    import numpy as np
+    NUMPY_AVAILABLE = True
+except ImportError:
+    # Running without numpy (Vercel)
+    NUMPY_AVAILABLE = False
+    np = None
 
 class MetricsTracker:
     """Tracks and analyzes agent performance metrics"""
@@ -71,9 +78,9 @@ class MetricsTracker:
         """Calculate prediction accuracy statistics"""
         completed_predictions = [p for p in self.predictions if p['actual'] is not None]
         
-        if not completed_predictions:
+        if not completed_predictions or not NUMPY_AVAILABLE:
             return {
-                'count': 0,
+                'count': len(completed_predictions) if completed_predictions else 0,
                 'accuracy': None,
                 'mae': None,
                 'rmse': None
