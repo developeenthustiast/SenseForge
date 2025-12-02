@@ -223,8 +223,6 @@ SENSEFORGE_REFRESH_INTERVAL=5
 ## 📚 Documentation
 
 - **[Technical Architecture](docs/ARCHITECTURE.md)**: Deep dive into system design
-- **[Demo Script](docs/DEMO_SCRIPT.md)**: Video production guide
-- **[Judge Q&A](docs/JUDGE_QA.md)**: Anticipated questions and answers
 - **[Verisense Registration](docs/VERISENSE_REGISTRATION.md)**: Registration walkthrough
 
 ---
