@@ -1,4 +1,4 @@
-"""Vercel entrypoint exposing the SenseForge Starlette app."""
+"""Vercel entrypoint exposing the lightweight API gateway."""
 
 from __future__ import annotations
 
@@ -12,6 +12,6 @@ if str(ROOT_DIR) not in sys.path:
 
 os.environ.setdefault("SENSEFORGE_MODE", "mock")
 
-from server import app as starlette_app  # noqa: E402  pylint: disable=wrong-import-position
+from api.gateway import app as starlette_app  # noqa: E402  pylint: disable=wrong-import-position
 
 app = starlette_app
