@@ -1,14 +1,16 @@
-# Core
-torch>=2.0.0
-numpy
-pandas
-pydantic
-python-dotenv
-uvicorn
-starlette
-requests
-aiohttp
-redis
-streamlit
-matplotlib
-plotly
+# Vercel-optimized dependencies (no torch/heavy ML libs)
+# Core web framework
+starlette==0.35.1
+uvicorn==0.27.0
+pydantic==2.5.3
+python-dotenv==1.0.0
+
+# HTTP & async
+requests==2.31.0
+aiohttp==3.9.1
+
+# Redis (async)
+redis==5.0.1
+
+# Security
+cryptography==41.0.7

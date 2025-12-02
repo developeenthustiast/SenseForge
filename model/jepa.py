@@ -2,9 +2,17 @@
 SenseForge JEPA Model
 Updated version with database integration and versioning.
 """
-import torch
-import torch.nn as nn
-import torch.optim as optim
+try:
+    import torch
+    import torch.nn as nn
+    import torch.optim as optim
+    TORCH_AVAILABLE = True
+except ImportError:
+    # Running on Vercel without torch - use mock mode
+    TORCH_AVAILABLE = False
+    torch = None
+    nn = object if not TORCH_AVAILABLE else nn
+    
 from collections import deque
 import random
 import os
@@ -15,37 +23,46 @@ from database.repository import CheckpointRepository, TrainingRepository
 from metrics import metrics
 from logging_setup import logger
 
-class LiquidityJEPA(nn.Module):
+class LiquidityJEPA(nn.Module if TORCH_AVAILABLE else object):
     """Enhanced JEPA model with production features"""
     
     def __init__(self, state_dim: int = 3, action_dim: int = 1, latent_dim: int = 16):
-        super().__init__()
-        
-        # Architecture (unchanged)
-        self.encoder = nn.Sequential(
-            nn.Linear(state_dim, 32),
-            nn.ReLU(),
-            nn.Linear(32, latent_dim)
-        )
-        
-        self.predictor = nn.Sequential(
-            nn.Linear(latent_dim + action_dim, 32),
-            nn.ReLU(),
-            nn.Linear(32, latent_dim)
-        )
-        
-        self.projector = nn.Sequential(
-            nn.Linear(latent_dim, 32),
-            nn.ReLU(),
-            nn.Linear(32, state_dim)
-        )
-        
-        self.optimizer = optim.Adam(self.parameters(), lr=0.001)
-        self.loss_fn = nn.MSELoss()
+        if TORCH_AVAILABLE:
+            super().__init__()
+            
+            # Architecture (unchanged)
+            self.encoder = nn.Sequential(
+                nn.Linear(state_dim, 32),
+                nn.ReLU(),
+                nn.Linear(32, latent_dim)
+            )
+            
+            self.predictor = nn.Sequential(
+                nn.Linear(latent_dim + action_dim, 32),
+                nn.ReLU(),
+                nn.Linear(32, latent_dim)
+            )
+            
+            self.projector = nn.Sequential(
+                nn.Linear(latent_dim, 32),
+                nn.ReLU(),
+                nn.Linear(32, state_dim)
+            )
+            
+            self.optimizer = optim.Adam(self.parameters(), lr=0.001)
+            self.loss_fn = nn.MSELoss()
+        else:
+            # Mock mode - no torch available
+            self.encoder = None
+            self.predictor = None
+            self.projector = None
+            self.optimizer = None
+            self.loss_fn = None
+            
         self.replay_buffer = deque(maxlen=10000)
         self.training_history: List[float] = []
         
-        logger.info("LiquidityJEPA initialized")
+        logger.info(f"LiquidityJEPA initialized (torch={'available' if TORCH_AVAILABLE else 'unavailable'})")
     
     def forward(self, state_tensor):
         """Encode state to latent representation"""
