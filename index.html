@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SenseForge - Risk Oracle API</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        .card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tagline {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        h2 {
+            font-size: 1.8em;
+            margin: 32px 0 16px;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            padding-bottom: 8px;
+        }
+        .endpoint {
+            background: rgba(0,0,0,0.3);
+            padding: 16px;
+            border-radius: 12px;
+            margin: 12px 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            border-left: 4px solid #fbbf24;
+        }
+        .endpoint strong { display: block; margin-bottom: 8px; font-size: 0.9em; }
+        .endpoint a {
+            color: #fbbf24;
+            text-decoration: none;
+            font-weight: bold;
+            word-break: break-all;
+        }
+        .endpoint a:hover { text-decoration: underline; }
+        .method { 
+            display: inline-block;
+            background: #10b981;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .method.post { background: #3b82f6; }
+        pre {
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        .badge {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10b981;
+            padding: 6px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 4px;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🔮 SenseForge</h1>
+            <p class="tagline">Institutional Liquidity Risk Oracle</p>
+            
+            <div>
+                <span class="badge">🤖 A2A Protocol</span>
+                <span class="badge">🧠 JEPA-Powered</span>
+                <span class="badge">⚡ Real-time</span>
+            </div>
+            
+            <h2>📡 API Endpoints</h2>
+            
+            <div class="endpoint">
+                <strong><span class="method">GET</span> Agent Discovery</strong>
+                <a href="/.well-known/agent.json" target="_blank" id="agent-link">/.well-known/agent.json</a>
+            </div>
+            
+            <div class="endpoint">
+                <strong><span class="method">GET</span> Health Check</strong>
+                <a href="/health" target="_blank" id="health-link">/health</a>
+            </div>
+            
+            <div class="endpoint">
+                <strong><span class="method post">POST</span> Risk Analysis</strong>
+                <code>/query</code>
+                <p style="margin-top: 8px; font-size: 0.85em; opacity: 0.8;">Submit liquidity risk queries to the tri-agent system</p>
+            </div>
+            
+            <h2>🧪 Example Request</h2>
+            <pre id="curl-example">curl -X POST <span id="base-url">https://your-app.vercel.app</span>/query \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "Analyze risk for Proposal PROP-123",
+    "metadata": {
+      "source": "api-test"
+    }
+  }'</pre>
+            
+            <h2>📚 Resources</h2>
+            <p style="margin-top: 12px;">
+                <a href="https://github.com/developeenthustiast/SenseForge" target="_blank" style="color: #fbbf24; font-weight: bold;">
+                    📖 GitHub Documentation
+                </a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-update URLs with current domain
+        const baseUrl = window.location.origin;
+        document.getElementById('base-url').textContent = baseUrl;
+        document.getElementById('agent-link').href = baseUrl + '/.well-known/agent.json';
+        document.getElementById('health-link').href = baseUrl + '/health';
+    </script>
+</body>
+</html>
