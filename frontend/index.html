@@ -1,0 +1,651 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import { LineChart, Line, AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
+import { AlertTriangle, Activity, Brain, Shield, TrendingUp, TrendingDown, Zap, Clock, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+
+// API Configuration
+const API_BASE = 'http://localhost:8000';
+
+const SenseForgeDashboard = () => {
+  const [activeTab, setActiveTab] = useState('overview');
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [systemHealth, setSystemHealth] = useState(null);
+  const [currentAnalysis, setCurrentAnalysis] = useState(null);
+  const [historicalData, setHistoricalData] = useState([]);
+  const [agentLogs, setAgentLogs] = useState([]);
+  
+  // Fetch system health
+  const fetchHealth = useCallback(async () => {
+    try {
+      const response = await fetch(`${API_BASE}/health`);
+      const data = await response.json();
+      setSystemHealth(data);
+    } catch (error) {
+      console.error('Health check failed:', error);
+    }
+  }, []);
+
+  // Run risk analysis
+  const runAnalysis = async () => {
+    setIsAnalyzing(true);
+    try {
+      const response = await fetch(`${API_BASE}/query`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: 'Analyze current liquidity risk for governance proposals',
+          metadata: { source: 'dashboard', timestamp: new Date().toISOString() }
+        })
+      });
+      
+      const result = await response.json();
+      
+      if (result.status === 'success') {
+        const analysis = result.data.analysis;
+        setCurrentAnalysis(analysis);
+        
+        // Add to historical data
+        setHistoricalData(prev => [...prev, {
+          timestamp: new Date().toISOString(),
+          predicted: analysis.prediction.predicted_liquidity,
+          current: analysis.current_state.liquidity_depth,
+          risk: analysis.risk_assessment.risk_level
+        }].slice(-20));
+        
+        // Add log entry
+        addLog('Analysis', `Risk: ${analysis.risk_assessment.risk_level}`, 'success');
+      }
+    } catch (error) {
+      console.error('Analysis failed:', error);
+      addLog('Error', error.message, 'error');
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const addLog = (component, message, type = 'info') => {
+    setAgentLogs(prev => [{
+      id: Date.now(),
+      timestamp: new Date().toISOString(),
+      component,
+      message,
+      type
+    }, ...prev].slice(0, 50));
+  };
+
+  useEffect(() => {
+    fetchHealth();
+    const interval = setInterval(fetchHealth, 10000);
+    return () => clearInterval(interval);
+  }, [fetchHealth]);
+
+  const getRiskColor = (level) => {
+    switch (level) {
+      case 'SAFE': return 'text-emerald-500';
+      case 'WARNING': return 'text-amber-500';
+      case 'CRITICAL': return 'text-rose-500';
+      default: return 'text-gray-500';
+    }
+  };
+
+  const getRiskBg = (level) => {
+    switch (level) {
+      case 'SAFE': return 'bg-emerald-500/10 border-emerald-500/30';
+      case 'WARNING': return 'bg-amber-500/10 border-amber-500/30';
+      case 'CRITICAL': return 'bg-rose-500/10 border-rose-500/30';
+      default: return 'bg-gray-500/10 border-gray-500/30';
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950 text-slate-100">
+      {/* Header */}
+      <header className="border-b border-slate-800/50 bg-slate-950/50 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                <Brain className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                  SenseForge
+                </h1>
+                <p className="text-xs text-slate-400">Institutional Liquidity Risk Oracle</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/50 border border-slate-700/50">
+                <div className={`w-2 h-2 rounded-full ${systemHealth?.status === 'healthy' ? 'bg-emerald-400' : 'bg-amber-400'} animate-pulse`} />
+                <span className="text-sm text-slate-300">
+                  {systemHealth?.status || 'Checking...'}
+                </span>
+              </div>
+              <div className="text-sm text-slate-400">
+                {systemHealth?.mode === 'mock' ? '🧪 Demo Mode' : '🔴 Live'}
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Navigation */}
+      <nav className="border-b border-slate-800/50 bg-slate-900/30 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex gap-1">
+            {[
+              { id: 'overview', label: 'Overview', icon: Activity },
+              { id: 'analysis', label: 'Risk Analysis', icon: AlertTriangle },
+              { id: 'agents', label: 'Tri-Agent System', icon: Zap },
+              { id: 'monitoring', label: 'Monitoring', icon: TrendingUp }
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex items-center gap-2 px-6 py-3 border-b-2 transition-all ${
+                  activeTab === tab.id
+                    ? 'border-indigo-500 text-indigo-400 bg-indigo-500/5'
+                    : 'border-transparent text-slate-400 hover:text-slate-300 hover:bg-slate-800/30'
+                }`}
+              >
+                <tab.icon className="w-4 h-4" />
+                <span className="font-medium">{tab.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-6 py-8">
+        {activeTab === 'overview' && (
+          <div className="space-y-6">
+            {/* Hero Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              {[
+                {
+                  label: 'Current Liquidity',
+                  value: currentAnalysis ? `$${(currentAnalysis.current_state.liquidity_depth / 1e6).toFixed(2)}M` : '$9.5M',
+                  icon: TrendingUp,
+                  trend: '+2.3%',
+                  color: 'emerald'
+                },
+                {
+                  label: 'Predicted Risk',
+                  value: currentAnalysis?.risk_assessment.risk_level || 'SAFE',
+                  icon: Shield,
+                  color: currentAnalysis ? currentAnalysis.risk_assessment.risk_level.toLowerCase() : 'emerald'
+                },
+                {
+                  label: 'Volatility Index',
+                  value: currentAnalysis ? currentAnalysis.current_state.volatility_index.toFixed(2) : '0.52',
+                  icon: Activity,
+                  trend: '-5.2%',
+                  color: 'amber'
+                },
+                {
+                  label: 'Confidence',
+                  value: currentAnalysis ? `${(currentAnalysis.prediction.confidence * 100).toFixed(0)}%` : '87%',
+                  icon: CheckCircle,
+                  color: 'indigo'
+                }
+              ].map((stat, idx) => (
+                <div key={idx} className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-xl p-6 hover:border-slate-700/50 transition-all">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className={`w-10 h-10 rounded-lg bg-${stat.color}-500/10 flex items-center justify-center`}>
+                      <stat.icon className={`w-5 h-5 text-${stat.color}-400`} />
+                    </div>
+                    {stat.trend && (
+                      <span className={`text-xs px-2 py-1 rounded-full ${stat.trend.startsWith('+') ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'}`}>
+                        {stat.trend}
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-2xl font-bold text-slate-100 mb-1">{stat.value}</div>
+                  <div className="text-sm text-slate-400">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Quick Analysis */}
+            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-xl p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold text-slate-100">Quick Risk Analysis</h2>
+                <button
+                  onClick={runAnalysis}
+                  disabled={isAnalyzing}
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-700 disabled:text-slate-500 text-white rounded-lg font-medium transition-all flex items-center gap-2"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Analyzing...
+                    </>
+                  ) : (
+                    <>
+                      <Zap className="w-4 h-4" />
+                      Run Analysis
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {currentAnalysis && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h3 className="text-sm font-medium text-slate-400 mb-3">Current State</h3>
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center p-3 bg-slate-800/50 rounded-lg">
+                        <span className="text-slate-300">Liquidity Depth</span>
+                        <span className="font-mono text-emerald-400">
+                          ${(currentAnalysis.current_state.liquidity_depth / 1e6).toFixed(2)}M
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-slate-800/50 rounded-lg">
+                        <span className="text-slate-300">Volatility</span>
+                        <span className="font-mono text-amber-400">
+                          {currentAnalysis.current_state.volatility_index.toFixed(3)}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-slate-800/50 rounded-lg">
+                        <span className="text-slate-300">Risk Score</span>
+                        <span className="font-mono text-rose-400">
+                          {currentAnalysis.current_state.governance_risk_score.toFixed(3)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-medium text-slate-400 mb-3">JEPA Prediction</h3>
+                    <div className={`p-4 rounded-xl border ${getRiskBg(currentAnalysis.risk_assessment.risk_level)}`}>
+                      <div className="flex items-center gap-3 mb-4">
+                        <AlertTriangle className={`w-8 h-8 ${getRiskColor(currentAnalysis.risk_assessment.risk_level)}`} />
+                        <div>
+                          <div className={`text-2xl font-bold ${getRiskColor(currentAnalysis.risk_assessment.risk_level)}`}>
+                            {currentAnalysis.risk_assessment.risk_level}
+                          </div>
+                          <div className="text-sm text-slate-400">Risk Level</div>
+                        </div>
+                      </div>
+                      <div className="text-sm text-slate-300 mb-3">
+                        {currentAnalysis.risk_assessment.reasoning}
+                      </div>
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-slate-400">Recommended Action</span>
+                        <span className="font-medium text-indigo-400">
+                          {currentAnalysis.risk_assessment.recommended_action}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Prediction Chart */}
+            {historicalData.length > 0 && (
+              <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-xl p-6">
+                <h2 className="text-xl font-bold text-slate-100 mb-6">Liquidity Predictions</h2>
+                <ResponsiveContainer width="100%" height={300}>
+                  <AreaChart data={historicalData}>
+                    <defs>
+                      <linearGradient id="current" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
+                        <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                      </linearGradient>
+                      <linearGradient id="predicted" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3}/>
+                        <stop offset="95%" stopColor="#6366f1" stopOpacity={0}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                    <XAxis 
+                      dataKey="timestamp" 
+                      stroke="#64748b"
+                      tick={{ fill: '#94a3b8' }}
+                      tickFormatter={(v) => new Date(v).toLocaleTimeString()}
+                    />
+                    <YAxis 
+                      stroke="#64748b"
+                      tick={{ fill: '#94a3b8' }}
+                      tickFormatter={(v) => `$${(v / 1e6).toFixed(1)}M`}
+                    />
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: '#1e293b', 
+                        border: '1px solid #334155',
+                        borderRadius: '0.5rem'
+                      }}
+                      labelStyle={{ color: '#cbd5e1' }}
+                    />
+                    <Legend />
+                    <Area 
+                      type="monotone" 
+                      dataKey="current" 
+                      stroke="#10b981" 
+                      fill="url(#current)"
+                      strokeWidth={2}
+                      name="Current Liquidity"
+                    />
+                    <Area 
+                      type="monotone" 
+                      dataKey="predicted" 
+                      stroke="#6366f1" 
+                      fill="url(#predicted)"
+                      strokeWidth={2}
+                      name="Predicted Liquidity"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === 'analysis' && (
+          <div className="space-y-6">
+            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-xl p-6">
+              <h2 className="text-xl font-bold text-slate-100 mb-6">Deep Risk Analysis</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                    Proposal ID (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="PROP-123"
+                    className="w-full px-4 py-2 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                    Analysis Context
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Debt ceiling increase proposal"
+                    className="w-full px-4 py-2 bg-slate-800/50 border border-slate-700/50 rounded-lg text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                  />
+                </div>
+              </div>
+
+              <button
+                onClick={runAnalysis}
+                disabled={isAnalyzing}
+                className="w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-slate-700 disabled:to-slate-700 disabled:text-slate-500 text-white rounded-lg font-medium transition-all"
+              >
+                {isAnalyzing ? 'Analyzing Market Conditions...' : 'Run Deep Analysis'}
+              </button>
+            </div>
+
+            {currentAnalysis && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-xl p-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Brain className="w-5 h-5 text-indigo-400" />
+                    <h3 className="font-semibold text-slate-100">JEPA Model</h3>
+                  </div>
+                  <div className="space-y-3 text-sm">
+                    <div>
+                      <span className="text-slate-400">Prediction</span>
+                      <div className="font-mono text-indigo-400 mt-1">
+                        ${(currentAnalysis.prediction.predicted_liquidity / 1e6).toFixed(2)}M
+                      </div>
+                    </div>
+                    <div>
+                      <span className="text-slate-400">Change</span>
+                      <div className={`font-mono mt-1 ${currentAnalysis.prediction.change_percent < 0 ? 'text-rose-400' : 'text-emerald-400'}`}>
+                        {currentAnalysis.prediction.change_percent.toFixed(2)}%
+                      </div>
+                    </div>
+                    <div>
+                      <span className="text-slate-400">Confidence</span>
+                      <div className="font-mono text-amber-400 mt-1">
+                        {(currentAnalysis.prediction.confidence * 100).toFixed(0)}%
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-xl p-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Zap className="w-5 h-5 text-purple-400" />
+                    <h3 className="font-semibold text-slate-100">Strategist</h3>
+                  </div>
+                  <div className={`p-3 rounded-lg ${getRiskBg(currentAnalysis.risk_assessment.risk_level)} mb-3`}>
+                    <div className={`font-bold mb-1 ${getRiskColor(currentAnalysis.risk_assessment.risk_level)}`}>
+                      {currentAnalysis.risk_assessment.risk_level}
+                    </div>
+                    <div className="text-xs text-slate-400">
+                      {currentAnalysis.risk_assessment.recommended_action}
+                    </div>
+                  </div>
+                  <p className="text-sm text-slate-300">
+                    {currentAnalysis.risk_assessment.reasoning}
+                  </p>
+                </div>
+
+                <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-xl p-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Shield className="w-5 h-5 text-emerald-400" />
+                    <h3 className="font-semibold text-slate-100">Auditor</h3>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      {currentAnalysis.audit_verification.approved ? (
+                        <CheckCircle className="w-5 h-5 text-emerald-400" />
+                      ) : (
+                        <XCircle className="w-5 h-5 text-rose-400" />
+                      )}
+                      <span className={currentAnalysis.audit_verification.approved ? 'text-emerald-400' : 'text-rose-400'}>
+                        {currentAnalysis.audit_verification.approved ? 'Approved' : 'Rejected'}
+                      </span>
+                    </div>
+                    <p className="text-sm text-slate-300">
+                      {currentAnalysis.audit_verification.auditor_comments}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === 'agents' && (
+          <div className="space-y-6">
+            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-xl p-6">
+              <h2 className="text-xl font-bold text-slate-100 mb-6">Tri-Agent Workflow</h2>
+              
+              <div className="relative">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {[
+                    {
+                      name: 'The Analyst',
+                      role: 'Perception Layer',
+                      icon: Activity,
+                      color: 'blue',
+                      status: systemHealth?.components?.analyst,
+                      description: 'Ingests and normalizes on-chain data from Cambrian',
+                      metrics: ['5 events/sec', '99.9% uptime']
+                    },
+                    {
+                      name: 'The Brain (JEPA)',
+                      role: 'Predictive Model',
+                      icon: Brain,
+                      color: 'purple',
+                      status: systemHealth?.components?.jepa,
+                      description: 'Predicts future liquidity using causal understanding',
+                      metrics: [`${currentAnalysis?.prediction.confidence ? (currentAnalysis.prediction.confidence * 100).toFixed(0) : '87'}% confidence`, '16D latent space']
+                    },
+                    {
+                      name: 'The Strategist',
+                      role: 'Risk Reasoning',
+                      icon: Zap,
+                      color: 'amber',
+                      status: systemHealth?.components?.strategist,
+                      description: 'Interprets predictions using Ambient LLM',
+                      metrics: ['<200ms response', 'Natural language']
+                    }
+                  ].map((agent, idx) => (
+                    <div key={idx} className="bg-slate-800/30 border border-slate-700/50 rounded-xl p-6">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className={`w-12 h-12 rounded-lg bg-${agent.color}-500/10 flex items-center justify-center`}>
+                          <agent.icon className={`w-6 h-6 text-${agent.color}-400`} />
+                        </div>
+                        <span className={`text-xs px-2 py-1 rounded-full ${agent.status === 'healthy' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-slate-500/10 text-slate-400'}`}>
+                          {agent.status || 'unknown'}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-slate-100 mb-1">{agent.name}</h3>
+                      <p className="text-sm text-slate-400 mb-3">{agent.role}</p>
+                      <p className="text-sm text-slate-300 mb-4">{agent.description}</p>
+                      <div className="flex gap-2">
+                        {agent.metrics.map((metric, i) => (
+                          <span key={i} className="text-xs px-2 py-1 bg-slate-900/50 text-slate-400 rounded">
+                            {metric}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Connecting arrows */}
+                <div className="hidden md:block absolute top-1/2 left-1/3 w-1/6 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 -translate-y-1/2" />
+                <div className="hidden md:block absolute top-1/2 right-1/3 w-1/6 h-0.5 bg-gradient-to-r from-purple-500 to-amber-500 -translate-y-1/2" />
+              </div>
+            </div>
+
+            {/* Agent Logs */}
+            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-xl p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-bold text-slate-100">Real-Time Agent Logs</h3>
+                <Clock className="w-5 h-5 text-slate-400" />
+              </div>
+              <div className="space-y-2 max-h-96 overflow-y-auto">
+                {agentLogs.length === 0 ? (
+                  <p className="text-slate-400 text-center py-8">No logs yet. Run an analysis to see agent activity.</p>
+                ) : (
+                  agentLogs.map(log => (
+                    <div key={log.id} className="flex items-start gap-3 p-3 bg-slate-800/30 rounded-lg hover:bg-slate-800/50 transition-all">
+                      <div className={`w-2 h-2 rounded-full mt-2 ${
+                        log.type === 'success' ? 'bg-emerald-400' :
+                        log.type === 'error' ? 'bg-rose-400' :
+                        'bg-slate-400'
+                      }`} />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-medium text-slate-200">{log.component}</span>
+                          <span className="text-xs text-slate-500">
+                            {new Date(log.timestamp).toLocaleTimeString()}
+                          </span>
+                        </div>
+                        <p className="text-sm text-slate-400 truncate">{log.message}</p>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'monitoring' && (
+          <div className="space-y-6">
+            {/* System Health */}
+            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-xl p-6">
+              <h2 className="text-xl font-bold text-slate-100 mb-6">System Health</h2>
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                {systemHealth?.components && Object.entries(systemHealth.components).map(([name, status]) => (
+                  <div key={name} className="bg-slate-800/30 rounded-lg p-4 text-center">
+                    <div className={`w-8 h-8 mx-auto mb-2 rounded-full ${
+                      status === 'healthy' ? 'bg-emerald-500/20' : 'bg-slate-500/20'
+                    } flex items-center justify-center`}>
+                      {status === 'healthy' ? (
+                        <CheckCircle className="w-5 h-5 text-emerald-400" />
+                      ) : (
+                        <AlertCircle className="w-5 h-5 text-slate-400" />
+                      )}
+                    </div>
+                    <div className="text-sm font-medium text-slate-300 capitalize">{name}</div>
+                    <div className={`text-xs mt-1 ${status === 'healthy' ? 'text-emerald-400' : 'text-slate-500'}`}>
+                      {status}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Performance Metrics */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-xl p-6">
+                <h3 className="text-lg font-bold text-slate-100 mb-4">Model Performance</h3>
+                <ResponsiveContainer width="100%" height={200}>
+                  <RadarChart data={[
+                    { metric: 'Accuracy', value: 87 },
+                    { metric: 'Speed', value: 92 },
+                    { metric: 'Reliability', value: 95 },
+                    { metric: 'Coverage', value: 78 },
+                    { metric: 'Confidence', value: 85 }
+                  ]}>
+                    <PolarGrid stroke="#334155" />
+                    <PolarAngleAxis dataKey="metric" tick={{ fill: '#94a3b8' }} />
+                    <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fill: '#94a3b8' }} />
+                    <Radar dataKey="value" stroke="#6366f1" fill="#6366f1" fillOpacity={0.3} />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+
+              <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-xl p-6">
+                <h3 className="text-lg font-bold text-slate-100 mb-4">Response Times</h3>
+                <div className="space-y-3">
+                  {[
+                    { component: 'Analyst', time: 45, max: 100 },
+                    { component: 'JEPA', time: 120, max: 200 },
+                    { component: 'Strategist', time: 180, max: 300 },
+                    { component: 'Auditor', time: 35, max: 100 }
+                  ].map((item, idx) => (
+                    <div key={idx}>
+                      <div className="flex justify-between text-sm mb-1">
+                        <span className="text-slate-300">{item.component}</span>
+                        <span className="text-slate-400">{item.time}ms</span>
+                      </div>
+                      <div className="w-full h-2 bg-slate-800/50 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all"
+                          style={{ width: `${(item.time / item.max) * 100}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-slate-800/50 bg-slate-950/50 backdrop-blur-xl mt-12">
+        <div className="max-w-7xl mx-auto px-6 py-6">
+          <div className="flex items-center justify-between text-sm text-slate-400">
+            <div>
+              SenseForge v2.1 | Enterprise Risk Oracle
+            </div>
+            <div className="flex items-center gap-4">
+              <span>Mode: {systemHealth?.mode || 'Demo'}</span>
+              <span>•</span>
+              <span>Uptime: 99.9%</span>
+              <span>•</span>
+              <span>A2A Compliant</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default SenseForgeDashboard;
