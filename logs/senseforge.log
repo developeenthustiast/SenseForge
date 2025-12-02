@@ -9,3 +9,8 @@
 2025-12-02 03:19:46,856 - senseforge - INFO - StrategistAgent initialized (mode: mock)
 2025-12-02 03:19:46,869 - senseforge - INFO - ============================================================
 2025-12-02 03:19:46,877 - senseforge - INFO - ============================================================
+2025-12-02 12:44:13,158 - senseforge - INFO - AmbientLLMClient initialized (model: ambient-1)
+2025-12-02 12:44:58,798 - senseforge - INFO - AmbientLLMClient initialized (model: ambient-1)
+2025-12-02 12:45:56,132 - senseforge - INFO - AmbientLLMClient initialized (model: ambient-1)
+2025-12-02 12:45:56,138 - senseforge - INFO - ProofOfReasoningLogger initialized
+2025-12-02 12:54:33,372 - senseforge - INFO - AmbientLLMClient initialized (model: ambient-1)

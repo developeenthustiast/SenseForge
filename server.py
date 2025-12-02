@@ -114,8 +114,15 @@ async def shutdown_components():
             logger.info("✓ Analyst shutdown")
         
         if jepa:
-            jepa.save_checkpoint()
-            logger.info("✓ JEPA checkpoint saved")
+            # Skip saving on Vercel (read-only filesystem)
+            if not os.getenv('VERCEL'):
+                try:
+                    jepa.save_checkpoint()
+                    logger.info("✓ JEPA checkpoint saved")
+                except Exception as e:
+                    logger.warning(f"Could not save JEPA checkpoint: {e}")
+            else:
+                logger.info("ℹ️  Skipping JEPA checkpoint save (Vercel environment)")
         
         if memory:
             await memory.close()
@@ -144,7 +151,8 @@ middleware = [
     Middleware(RateLimitMiddleware, rate_limiter=RateLimiter(
         rate=int(os.getenv('RATE_LIMIT', 100)),
         per=60,
-        storage='memory'  # Use Redis in production
+        storage='redis' if os.getenv('REDIS_URL') else 'memory',
+        redis_url=os.getenv('REDIS_URL')
     )),
 ]
 

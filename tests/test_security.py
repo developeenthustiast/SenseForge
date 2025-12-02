@@ -1,4 +1,4 @@
-````python
+
 """
 Security Testing
 Test authentication, validation, and rate limiting.
@@ -25,9 +25,9 @@ class TestInputValidation:
     
     def test_query_sanitization(self):
         """Test HTML escaping"""
-        request = QueryRequest(query="Test <script>alert('xss')</script>")
-        assert "<script>" not in request.query
-        assert "&lt;script&gt;" in request.query
+        # The validation logic now rejects dangerous patterns instead of just escaping them
+        with pytest.raises(ValueError, match="forbidden pattern"):
+            QueryRequest(query="Test <script>alert('xss')</script>")
     
     def test_dangerous_pattern_rejection(self):
         """Test rejection of dangerous patterns"""
@@ -51,7 +51,7 @@ class TestInputValidation:
         """Test metadata size limits"""
         large_metadata = {"key": "x" * 20000}
         
-        with pytest.raises(ValueError, match="size exceeds limit"):
+        with pytest.raises(ValueError, match="exceeds maximum length"):
             QueryRequest(query="test", metadata=large_metadata)
     
     def test_forbidden_metadata_keys(self):
@@ -62,33 +62,37 @@ class TestInputValidation:
 class TestRateLimiting:
     """Test rate limiting"""
     
-    @pytest.mark.asyncio
-    async def test_allows_within_limit(self):
+    def test_allows_within_limit(self):
         """Test allows requests within limit"""
-        limiter = RateLimiter(rate=10, per=1.0, storage='memory')
+        async def _test():
+            limiter = RateLimiter(rate=10, per=1.0, storage='memory')
+            
+            for i in range(5):
+                allowed, info = await limiter.is_allowed(f"client_{i}")
+                assert allowed
+                assert info['remaining'] >= 0
         
-        for i in range(5):
-            allowed, info = await limiter.is_allowed(f"client_{i}")
-            assert allowed
-            assert info['remaining'] >= 0
+        asyncio.run(_test())
     
-    @pytest.mark.asyncio
-    async def test_blocks_over_limit(self):
+    def test_blocks_over_limit(self):
         """Test blocks requests over limit"""
-        limiter = RateLimiter(rate=2, per=1.0, storage='memory')
-        
-        client_key = "test_client"
-        
-        # First 2 should pass
-        for i in range(2):
-            allowed, _ = await limiter.is_allowed(client_key)
-            assert allowed
-        
-        # 3rd should be blocked
-        allowed, info = await limiter.is_allowed(client_key)
-        assert not allowed
-        assert info['remaining'] == 0
-        assert 'retry_after' in info
+        async def _test():
+            limiter = RateLimiter(rate=2, per=1.0, storage='memory')
+            
+            client_key = "test_client"
+            
+            # First 2 should pass
+            for i in range(2):
+                allowed, _ = await limiter.is_allowed(client_key)
+                assert allowed
+            
+            # 3rd should be blocked
+            allowed, info = await limiter.is_allowed(client_key)
+            assert not allowed
+            assert info['remaining'] == 0
+            assert 'retry_after' in info
+            
+        asyncio.run(_test())
 
 class TestAPIKeyValidation:
     """Test API key validation"""
@@ -165,92 +169,6 @@ class TestSecureResponses:
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
-````
 
----
 
-## Part 4: Deployment & Documentation
 
-**File:** `docker-compose.yml` (NEW)
-````yaml
-version: '3.8'
-
-services:
-  senseforge:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - SENSEFORGE_MODE=live
-      - DATABASE_URL=postgresql://senseforge:${DB_PASSWORD}@postgres:5432/senseforge
-      - REDIS_URL=redis://redis:6379/0
-      - CAMBRIAN_API_KEY=${CAMBRIAN_API_KEY}
-      - LETTA_API_KEY=${LETTA_API_KEY}
-      - AMBIENT_API_KEY=${AMBIENT_API_KEY}
-    depends_on:
-      - postgres
-      - redis
-    volumes:
-      - ./checkpoints:/app/checkpoints
-      - ./logs:/app/logs
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-
-  postgres:
-    image: postgres:15-alpine
-    environment:
-      - POSTGRES_USER=senseforge
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=senseforge
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U senseforge"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  redis:
-    image: redis:7-alpine
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 3s
-      retries: 3
-
-  prometheus:
-    image: prom/prometheus:latest
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
-      - prometheus_data:/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-    restart: unless-stopped
-
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
-    volumes:
-      - grafana_data:/var/lib/grafana
-      - ./config/grafana/dashboards:/etc/grafana/provisioning/dashboards
-    depends_on:
-      - prometheus
-    restart: unless-stopped
-
-volumes:
-  postgres_data:
-  prometheus_data:
-  grafana_data:
