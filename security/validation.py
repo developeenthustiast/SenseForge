@@ -260,11 +260,25 @@ class SecureResponseBuilder:
         Returns:
             Response dictionary
         """
+        import json
+        from datetime import datetime as dt, date
+        from uuid import UUID
+        
+        def datetime_handler(obj):
+            if isinstance(obj, (dt, date)):
+                return obj.isoformat()
+            if isinstance(obj, UUID):
+                return str(obj)
+            raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
+        
+        # Convert any datetime objects to ISO format strings
+        serializable_data = json.loads(json.dumps(data, default=datetime_handler))
+        
         response = {
             'status': 'success',
             'request_id': request_id,
             'timestamp': datetime.utcnow().isoformat() + 'Z',
-            'data': data
+            'data': serializable_data
         }
         
         if include_debug:

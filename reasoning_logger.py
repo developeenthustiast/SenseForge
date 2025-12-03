@@ -4,11 +4,22 @@ Generates audit trails for Verisense compliance and transparency.
 """
 import json
 from typing import Dict, List, Optional
-from datetime import datetime
+from datetime import datetime, date
 from pathlib import Path
 from dataclasses import dataclass, asdict
+from uuid import UUID
 
 from logging_setup import logger
+
+# Custom JSON encoder for datetime objects
+class DateTimeEncoder(json.JSONEncoder):
+    """Handle datetime, date, and UUID serialization for JSON"""
+    def default(self, obj):
+        if isinstance(obj, (datetime, date)):
+            return obj.isoformat()
+        if isinstance(obj, UUID):
+            return str(obj)
+        return super().default(obj)
 
 @dataclass
 class ReasoningStep:
@@ -137,7 +148,7 @@ class ProofOfReasoningLogger:
         filepath = self.output_dir / filename
         
         with open(filepath, 'w') as f:
-            json.dump(self.current_chain.to_dict(), f, indent=2)
+            json.dump(self.current_chain.to_dict(), f, indent=2, cls=DateTimeEncoder)
         
         logger.info(
             f"[REASONING] Finalized chain {self.current_chain.chain_id} "

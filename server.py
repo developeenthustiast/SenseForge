@@ -20,6 +20,40 @@ import uuid
 from datetime import datetime
 from pathlib import Path
 
+# Custom JSON encoder for datetime objects
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        from datetime import date, datetime
+        from uuid import UUID
+        if isinstance(obj, (datetime, date)):
+            return obj.isoformat()
+        if isinstance(obj, UUID):
+            return str(obj)
+        return super().default(obj)
+
+# Helper for recursive serialization
+def make_serializable(obj):
+    from datetime import date, datetime
+    from uuid import UUID
+    from pydantic import BaseModel
+    import numpy as np
+    
+    if isinstance(obj, (datetime, date)):
+        return obj.isoformat()
+    if isinstance(obj, UUID):
+        return str(obj)
+    if isinstance(obj, BaseModel):
+        return make_serializable(obj.dict())
+    if isinstance(obj, (np.integer, np.floating)):
+        return float(obj) if isinstance(obj, np.floating) else int(obj)
+    if isinstance(obj, np.ndarray):
+        return make_serializable(obj.tolist())
+    if isinstance(obj, dict):
+        return {k: make_serializable(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [make_serializable(v) for v in obj]
+    return obj
+
 # Security imports
 from security.validation import (
     QueryRequest, 
@@ -114,15 +148,11 @@ async def shutdown_components():
             logger.info("✓ Analyst shutdown")
         
         if jepa:
-            # Skip saving on Vercel (read-only filesystem)
-            if not os.getenv('VERCEL'):
-                try:
-                    jepa.save_checkpoint()
-                    logger.info("✓ JEPA checkpoint saved")
-                except Exception as e:
-                    logger.warning(f"Could not save JEPA checkpoint: {e}")
-            else:
-                logger.info("ℹ️  Skipping JEPA checkpoint save (Vercel environment)")
+            try:
+                jepa.save_checkpoint()
+                logger.info("✓ JEPA checkpoint saved")
+            except Exception as e:
+                logger.warning(f"Could not save JEPA checkpoint: {e}")
         
         if memory:
             await memory.close()
@@ -151,8 +181,8 @@ middleware = [
     Middleware(RateLimitMiddleware, rate_limiter=RateLimiter(
         rate=int(os.getenv('RATE_LIMIT', 100)),
         per=60,
-        storage='redis',
-        redis_url=os.getenv('REDIS_URL', 'redis://localhost:6379')
+        storage='redis' if os.getenv('REDIS_URL') else 'memory',
+        redis_url=os.getenv('REDIS_URL')
     )),
 ]
 
@@ -401,7 +431,7 @@ async def handle_query(request):
         reasoning_logger.log_step(
             component="Analyst",
             input_data={"events_count": len(events_buffer)},
-            output_data=current_state.dict(),
+            output_data=make_serializable(current_state.dict()),
             reasoning=f"Normalized {len(events_buffer)} events",
             confidence=1.0,
             duration_ms=step_duration
@@ -426,7 +456,7 @@ async def handle_query(request):
         step_duration = (datetime.now() - step_start).total_seconds() * 1000
         reasoning_logger.log_step(
             component="Brain (JEPA)",
-            input_data={"state": current_state.dict()},
+            input_data={"state": make_serializable(current_state.dict())},
             output_data={"predicted_liquidity": predicted_liquidity},
             reasoning=f"Predicted liquidity: ${predicted_liquidity:,.0f}",
             confidence=confidence,
@@ -445,7 +475,7 @@ async def handle_query(request):
         reasoning_logger.log_step(
             component="Strategist",
             input_data={"predicted_liquidity": predicted_liquidity},
-            output_data=strategy,
+            output_data=make_serializable(strategy),
             reasoning=strategy.get('reasoning', ''),
             confidence=strategy.get('confidence'),
             duration_ms=step_duration
@@ -459,8 +489,8 @@ async def handle_query(request):
         step_duration = (datetime.now() - step_start).total_seconds() * 1000
         reasoning_logger.log_step(
             component="Auditor",
-            input_data=strategy,
-            output_data=audit_result,
+            input_data=make_serializable(strategy),
+            output_data=make_serializable(audit_result),
             reasoning=audit_result.get('auditor_comments', ''),
             confidence=1.0,
             duration_ms=step_duration
@@ -496,7 +526,9 @@ async def handle_query(request):
         
         # Finalize reasoning
         total_duration = (datetime.now() - start_time).total_seconds() * 1000
-        reasoning_logger.finalize_chain(response_data, total_duration)
+        # Finalize reasoning
+        total_duration = (datetime.now() - start_time).total_seconds() * 1000
+        reasoning_logger.finalize_chain(make_serializable(response_data), total_duration)
         
         logger.info(
             f"[{request_id}] Success ({total_duration:.2f}ms) - "
@@ -509,8 +541,11 @@ async def handle_query(request):
             request_id
         )
         
+        # Manually sanitize response data before JSONResponse
+        safe_response = make_serializable(response)
+        
         # Add security headers
-        json_response = JSONResponse(response)
+        json_response = JSONResponse(safe_response)
         json_response.headers['X-Content-Type-Options'] = 'nosniff'
         json_response.headers['X-Frame-Options'] = 'DENY'
         json_response.headers['X-XSS-Protection'] = '1; mode=block'
@@ -531,20 +566,37 @@ async def handle_query(request):
         )
     
     except Exception as e:
+        import traceback
+        with open("error.log", "w") as f:
+            f.write(f"Error: {str(e)}\n")
+            f.write(traceback.format_exc())
+            
         logger.error(f"[{request_id}] Error: {e}", exc_info=True)
         
+        # Ensure error response is also serializable
+        error_data = SecureResponseBuilder.error_response(
+            error_type="internal_error",
+            message=str(e),
+            request_id=request_id,
+            expose_details=(MODE != 'live')
+        )
+        
         return JSONResponse(
-            SecureResponseBuilder.error_response(
-                error_type="internal_error",
-                message=str(e),
-                request_id=request_id,
-                expose_details=(MODE != 'live')
-            ),
+            make_serializable(error_data),
             status_code=500
         )
 
 # ===== ROUTES =====
+async def serve_demo(request):
+    """Serve demo landing page for judges"""
+    from pathlib import Path
+    html_path = Path(__file__).parent / "static" / "index.html"
+    with open(html_path, 'r', encoding='utf-8') as f:
+        html_content = f.read()
+    return Response(html_content, media_type="text/html")
+
 routes = [
+    Route("/", serve_demo, methods=["GET"]),
     Route("/.well-known/agent.json", get_agent_card, methods=["GET"]),
     Route("/health", health_check, methods=["GET"]),
     Route("/metrics", metrics_endpoint, methods=["GET"]),
